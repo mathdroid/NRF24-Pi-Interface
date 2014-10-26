@@ -50,29 +50,29 @@ class NRF24:
     CRC_ENABLED = 3
 
     # Registers
-    CONFIG = 0x1E
+    CONFIG = 0x00
 #0x00
     EN_AA = 0x01
-    EN_RXADDR = 0x01
+    EN_RXADDR = 0x02
 #0x02^^
     SETUP_AW = 0x03
 #0x03^^
     SETUP_RETR = 0x04
-    RF_CH = 0x01
+    RF_CH = 0x05
 #0x05^^
-    RF_SETUP = 0x07
+    RF_SETUP = 0x06
 #0x06^^
     STATUS = 0x07
     OBSERVE_TX = 0x08
     CD = 0x09
-    RX_ADDR_P0 = 0x12
-    RX_ADDR_P1 = 0x12
-    RX_ADDR_P2 = 0x12
-    RX_ADDR_P3 = 0x12
-    RX_ADDR_P4 = 0x12
-    RX_ADDR_P5 = 0x12
+    RX_ADDR_P0 = 0x0A
+    RX_ADDR_P1 = 0x0B
+    RX_ADDR_P2 = 0x0C
+    RX_ADDR_P3 = 0x0D
+    RX_ADDR_P4 = 0x0E
+    RX_ADDR_P5 = 0x0F
 #0ABCDEF
-    TX_ADDR = 0x12
+    TX_ADDR = 0x10
 #0x10^^
     RX_PW_P0 = 0x01
     RX_PW_P1 = 0x12
@@ -177,7 +177,7 @@ class NRF24:
         self.ce_pin = 17
         #self.irq_pin = "P9_16"
         self.channel = 76
-        self.data_rate = NRF24.BR_1MBPS
+        self.data_rate = NRF24.BR_2MBPS
         self.wide_band = False # 2Mbs data rate in use?
         self.p_variant = False # False for RF24L01 and true for RF24L01P
         self.payload_size = 5 #*< Fixed size of payloads
@@ -363,6 +363,7 @@ class NRF24:
     def begin(self, major, minor, ce_pin):
         # Initialize SPI bus
         self.spidev = spidev.SpiDev()
+        print str(self.spidev)
         self.spidev.open(major, minor)
         self.ce_pin = ce_pin
         #self.irq_pin = irq_pin
