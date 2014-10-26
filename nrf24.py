@@ -249,6 +249,7 @@ class NRF24:
         txbuffer = [NRF24.W_TX_PAYLOAD]
         for n in buf:
             t = type(n)
+            print str(n)
             if t is str:
                 txbuffer.append(ord(n))
             elif t is int:
