@@ -459,8 +459,9 @@ class NRF24:
             if (status & (_BV(NRF24.TX_DS) | _BV(NRF24.MAX_RT))) or (time.time() - sent_at > timeout ):
                 break
             time.sleep(10 / 1000000.0)
-        print "assigning result with " + str(self.whatHappened()) + " and result with " + what['tx_ok']
         what = self.whatHappened()
+        print "assigning result with " + str(self.whatHappened()) + " and result with " + what['tx_ok']
+        
 
         result = what['tx_ok']
 
