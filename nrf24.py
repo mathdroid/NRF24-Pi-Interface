@@ -446,17 +446,20 @@ class NRF24:
         print "Calling startWrite.."
         self.startWrite(buf)
 
-        print "setting timeout as " + str(self.getMaxTimeout()) + ""
+        print "setting timeout as " + str(self.getMaxTimeout()) + " and sent_at as " + str(time.time())
         timeout = self.getMaxTimeout() #s to wait for timeout
         sent_at = time.time()
 
+
         while True:
             #status = self.read_register(NRF24.OBSERVE_TX, 1)
+            print "getting status... -> " + str(self.get_status())
             status = self.get_status()
+            print "is status equal to " + str(_BV(NRF24.TX_DS)) + " or " + str(_BV(NRF24.MAX_RT))
             if (status & (_BV(NRF24.TX_DS) | _BV(NRF24.MAX_RT))) or (time.time() - sent_at > timeout ):
                 break
             time.sleep(10 / 1000000.0)
-
+        print "assigning result with " + str(self.whatHappened()) + " and result with " + what['tx_ok']
         what = self.whatHappened()
 
         result = what['tx_ok']
