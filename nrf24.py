@@ -460,7 +460,7 @@ class NRF24:
                 break
             time.sleep(10 / 1000000.0)
         what = self.whatHappened()
-        print "assigning result with " + str(self.whatHappened()) + " and result with " + what['tx_ok']
+        print "assigning result with " + str(self.whatHappened()) + " and result with " + str(what['tx_ok'])
         
 
         result = what['tx_ok']
