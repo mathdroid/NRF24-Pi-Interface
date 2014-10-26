@@ -443,10 +443,10 @@ class NRF24:
     def write(self, buf):
         
         # Begin the write
-        print "Calling startWrite.."
+        #print "Calling startWrite.."
         self.startWrite(buf)
 
-        print "setting timeout as " + self.getMaxTimeout() + ""
+        #print "setting timeout as " + self.getMaxTimeout() + ""
         timeout = self.getMaxTimeout() #s to wait for timeout
         sent_at = time.time()
 
